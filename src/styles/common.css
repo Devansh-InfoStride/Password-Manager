@@ -1,0 +1,87 @@
+/* Common Layout Styles */
+:root {
+    --primary-color: #3b82f6;
+    --secondary-color: #1e40af;
+    --text-color: #1f2937;
+    --bg-color: #f3f4f6;
+    --white: #ffffff;
+}
+
+/* Global Resets for Full-Width Layout */
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Page content wrapper to restore padding for main sections */
+.main-section, .password-form-container {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-header {
+    background-color: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    left: 0;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.main-footer {
+    background-color: #111827;
+    color: #9ca3af;
+    padding: 2rem 0;
+    margin-top: auto;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.footer-content {
+    width: 100%;
+    text-align: center;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.footer-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+}
