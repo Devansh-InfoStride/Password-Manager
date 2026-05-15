@@ -4,37 +4,42 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Password Strength Checker</title>
+		<title>Home Page</title>
 		<link rel="stylesheet" href="./styles/styles.css">
 	</head>
 
 	<body>
-		<div class="Heading">
-			<h1>Welcome to the Password Strength Checker</h1>
-		</div>
-		<div class="password-form">
-			<form id="passwordForm" action="./components/submit.html">
-				<label for="password" class="formHeading">Enter your password:</label>
-				<input type="password" id="password" name="password" placeholder="Enter a strong password" required>
-				<label for="password" class="formHeading"> 
-                    <input type="checkbox" onclick="togglePassword()"> 
-                        Show Password
-                    </label>
-				<div id="strengthDisplay" class="strength-display" style="display: none;">
-					<p>Password Strength: <span id="strength-text">-</span></p>
-					<div class="strength-bar">
-						<div id="strength-meter" class="strength-meter"></div>
+		<section class="main-section">
+			<div class="heading">
+				<h1>Welcome to you Personalized Password Manager</h1>
+			</div>
+			<div class="content">
+				<div class="container">
+					<div class="item">
+						<h2>Check Your Password Strength</h2>
+						<p>Enter your password to see how strong it is.</p>
+						<a href="./components/passwordChecker.html" style="text-decoration: none;" target="_blank">
+							<button>Check Strength</button>
+						</a>
+						
+					</div>
+					<div class="item">
+						<h2>Generate a Strong Personalized Password</h2>
+						<p>Create a secure, unique password for your accounts.</p>
+						<a href="./components/passwordGenerator.html" style="text-decoration: none;">
+							<button>Generate Password</button>
+						</a>
+					</div>
+					<div class="item">
+						<h2>Save and Manage Your Passwords</h2>
+						<p>Store all your passwords in one secure place.</p>
+						<a href="./components/passwordManager.html" style="text-decoration: none;">
+							<button>Manage Passwords</button>
+						</a>
 					</div>
 				</div>
-				<button type="submit" id="submitBtn">Check Strength</button>
-				<div id="result" class="result-display" style="display: none;">
-					<h2>Password Analysis</h2>
-					<p id="resultText"></p>
-					<button type="button" onclick="resetForm()">Check Another</button>
-				</div>
-			</form>
-		</div>
+			</div>
+		</section>
 	</body>
 	<script src="./script.js"></script>
-
 </html>
