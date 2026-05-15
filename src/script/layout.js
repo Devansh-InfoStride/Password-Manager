@@ -34,6 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             }
                         });
+
+                        const images = placeholder.querySelectorAll('img');
+                        images.forEach(image => {
+                            const src = image.getAttribute('src');
+                            if (src && !src.startsWith('http') && !src.startsWith('data:') && !src.startsWith('/')) {
+                                image.src = rootPath + src;
+                            }
+                        });
                     }
                 })
                 .catch(err => console.error(`Failed to load ${file}:`, err));
