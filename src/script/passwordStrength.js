@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (form) {
     form.addEventListener("submit", function (e) {
+      if (!passwordInput) return; // Exit if this isn't the checker form
       e.preventDefault();
       const password = passwordInput.value;
       const result = checkPasswordStrength(password);
