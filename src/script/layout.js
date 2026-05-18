@@ -17,37 +17,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loadComponent = (id, file) => {
         const placeholder = document.getElementById(id);
-        if (placeholder) {
-            fetch(rootPath + file)
-                .then(response => response.text())
-                .then(html => {
-                    placeholder.innerHTML = html;
-                    // Fix links in the injected HTML to be relative to current page
-                    if (id === 'header-placeholder') {
-                        const navLinks = placeholder.querySelectorAll('a');
-                        navLinks.forEach(link => {
-                            const href = link.getAttribute('href');
-                            if (href && !href.startsWith('http') && !href.startsWith('#')) {
-                                // If it starts with /, it's root-relative. Convert to page-relative.
-                                if (href.startsWith('/')) {
-                                    link.href = rootPath + href.substring(1);
-                                }
-                            }
-                        });
+        if (!placeholder) return Promise.resolve();
 
-                        const images = placeholder.querySelectorAll('img');
-                        images.forEach(image => {
-                            const src = image.getAttribute('src');
-                            if (src && !src.startsWith('http') && !src.startsWith('data:') && !src.startsWith('/')) {
-                                image.src = rootPath + src;
+        return fetch(rootPath + file)
+            .then(response => response.text())
+            .then(html => {
+                placeholder.innerHTML = html;
+
+                // Fix links in the injected HTML to be relative to current page
+                if (id === 'header-placeholder') {
+                    const navLinks = placeholder.querySelectorAll('a');
+                    navLinks.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href && !href.startsWith('http') && !href.startsWith('#')) {
+                            if (href.startsWith('/')) {
+                                link.href = rootPath + href.substring(1);
                             }
-                        });
-                    }
-                })
-                .catch(err => console.error(`Failed to load ${file}:`, err));
-        }
+                        }
+                    });
+
+                    const images = placeholder.querySelectorAll('img');
+                    images.forEach(image => {
+                        const src = image.getAttribute('src');
+                        if (src && !src.startsWith('http') && !src.startsWith('data:') && !src.startsWith('/')) {
+                            image.src = rootPath + src;
+                        }
+                    });
+                }
+            })
+            .catch(err => {
+                console.error(`Failed to load ${file}:`, err);
+            });
     };
 
-    loadComponent('header-placeholder', 'components/common/header.html');
-    loadComponent('footer-placeholder', 'components/common/footer.html');
+    // Load both components
+    Promise.all([
+        loadComponent('header-placeholder', 'components/common/header.html'),
+        loadComponent('footer-placeholder', 'components/common/footer.html')
+    ]).catch(err => console.error('Error loading layout components:', err));
 });
