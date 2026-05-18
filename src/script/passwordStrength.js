@@ -56,11 +56,13 @@ function getStrengthInfo(strength) {
 }
 
 // Update strength display in real-time
-function updateStrengthDisplay(password) {
+function updateStrengthDisplay(password, strengthTextElement, strengthMeterElement) {
   const result = checkPasswordStrength(password);
   const strength = result.strength;
-  const strengthText = document.getElementById("strength-text");
-  const strengthMeter = document.getElementById("strength-meter");
+  
+  // Use provided elements or fallback to document elements (for backward compatibility)
+  const strengthText = strengthTextElement || document.getElementById("strength-text");
+  const strengthMeter = strengthMeterElement || document.getElementById("strength-meter");
   const sd = document.getElementById("strengthDisplay");
   
   const info = getStrengthInfo(strength);
